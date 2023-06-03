@@ -99,14 +99,16 @@ function cumleKur(
 
 /* (Oto test yok) cumleKur fonksiyonuna yalnızca 1 parametre göndererek "Hello World!" stringini elde edin, 
 sonucu konsolde gözlemleyin */
-
+console.log("g1)", cumleKur("Hello", "World!"));
 /* (Oto test yok) cumleKur fonksiyonuna yalnızca 2 parametre göndererek "Hello World!" stringini elde edin, 
 sonucu konsolde gözlemleyin */
-
+console.log("g2)", cumleKur("Hello", "World!"));
 /* (Oto test var) cumleKur fonksiyonuna 5 parametre göndererek "Ben iyi bir yazılımcı olacağım!" stringini 
 elde edin, sonucu `bircumle` değişkenine atayın ve konsolde gözlemleyin */
 var bircumle;
+bircumle = cumleKur("Ben","iyi","bir","yazılımcı","olacağım!");
 
+console.log("g3)",bircumle);
 /* kodlar buraya */
 
 //		Sayfanın en üstünde global olarak tanımlanmış `cumleler` adında bir dizi bulunmaktadır. Bu dizinin
@@ -128,10 +130,14 @@ var bircumle;
 			5. Oluşturulan yeni dizi döndürülecek.
 	*/
 
-function cumlelereDonustur(/* kodlar buraya */) {
-  /* kodlar buraya */
-}
+function cumlelereDonustur(cumleDizisi, ayrac = ",") {
+  const sonuc = cumleDizisi.map((kelimeDizisi) => kelimeDizisi.join
+  (ayrac));
 
+return sonuc;
+}
+console.log("G1", cumlelereDonustur(cumleler,""));
+console.log("G1-2",cumlelereDonustur(cumleler));
 /* GÖREV 2:
 		paragrafOlustur fonksiyonuna aşağıdakileri uygulayın.
 			1. cumleler dizisi fonksiyonun birinci parametresi olarak alınacak
@@ -145,16 +151,35 @@ function cumlelereDonustur(/* kodlar buraya */) {
 			6. Oluşturulan paragraf döndürülecek
 	*/
 
-function paragrafOlustur(/* kodlar buraya */) {
-  /* kodlar buraya */
-}
+function paragrafOlustur(
+  cumleDizisi,
+  cumleKurCallBack,
+  cumlelereDonusturCallBack
 
+) {
+  const yeniCumleler = cumlelereDonusturCallBack(cumleDizisi," ");
+  console.log("yeniCumleler , yeniCumleler");
+
+  return cumleKurCallBack(
+    yeniCumleler[1],
+    yeniCumleler[2],
+    yeniCumleler[3],
+    yeniCumleler[5],
+    yeniCumleler[7],
+  );
+}
+console.log("G2",paragrafOlustur(cumleler, cumleKur,cumlelereDonustur));
 /* 	GÖREV 3:
 		Yukarıda isimleri sebzeler ve meyveler olan 2 dizi bulunmaktadır. Bu dizileri kullanarak aşağıdaki görevleri tamamlayın.
 			3a. meyveler dizisinin ilk ve son elemanlarını diziden çıkartın. (.pop ve .shift metodlarını kullanın)
  */
 //3a çözümü
-/* kodlar buraya */
+
+meyveler.pop();
+meyveler.shift();
+
+console.log(meyveler);
+
 
 /* 			3b.  Bir tavşan ve bir kirpi arkadaşlar sebzeler dizimizin peşine düştü. Tavşan => 🐇 , Kirpi=> 🦔 , 
 Tavşanla kirpi sebzeleri ele geçirmek için bir plan kurdular. Tavşan diziye önden saldıracak, kirpi ise 
@@ -162,16 +187,23 @@ arkalarından dolaşacak. Varsayalım ki arkadaşların planları başarılı ol
 Kirpiyi dizinin son elemanına ekleyin 🦔
  */
 //3b çözümü
-/* kodlar buraya */
+sebzeler.unshift("🐇");
+sebzeler.push("🦔");
+
+console.log(sebzeler);
 
 /* 			3c. manav isminde bir dizi oluşturun.`meyveler` dizisi ilk elemanlara, `sebzeler` dizisi son 
 elemanlara denk gelecek şekilde, iki diziyi birleştirip sonucu manav dizisine aktarın. (.concat metodu)
  */
 //3c çözümü
-/* kodlar buraya */
+var manav = meyveler.concat(sebzeler);
 
 var manav;
+	console.log(manav);
 
+var manav;
+manav = [...meyveler,...sebzeler]
+console.log("G3c" , manav );
 /* 	GÖREV 4:
 		Yeni kurulmuş bir mesajlaşma startup firması atılan mesajları emojilerle zenginleştirmek istiyor. 
     Bunun için emojiler adında bir nesne tanımlamışlar. Kullanıcının gönderdiği mesaj stringi içinde 
@@ -189,9 +221,33 @@ var manav;
 			4. elde edilen string döndürülecek
  */
 
-function emojileriDonustur(/* kodlar buraya */) {
-  /* kodlar buraya */
+function emojileriDonustur(biMesaj,emojiKlavuzu) {
+  let yeniMesaj = biMesaj;
+  let enaktarlar = Object.keys(emojiKlavuzu);
+
+  for(let i = 0; i<enaktarlar.length; i++){
+    yeniMesaj = yeniMesaj.replaceAll(
+      enaktarlar[i],toUpperCase(),
+      emojiKlavuzu[enaktarlar[i]]
+    );
+  }
+  return yeniMesaj
 }
+
+function emojileriDonustur2(biMesaj, emojiKlavuzu){
+  let yeniMesaj = biMesaj;
+  let enaktarlar = Object.keys(emojiKlavuzu);
+  for(let i = 0; i< enaktarlar.length; i++){
+    let re = new RegExp(enaktarlar[i], "gi");
+    console.log(re,enaktarlar[i],emojiKlavuzu[enaktarlar[i]]);
+    yeniMesaj= yeniMesaj.replace(re,emojiKlavuzu[enaktarlar[i]]);
+  }
+  return yeniMesaj;
+}
+console.log(
+  emojileriDonustur
+
+);
 
 /*  Bu satırın aşağısındaki kodları lütfen değiştirmeyin  */
 function sa() {
